@@ -45,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
     'silk.middleware.SilkyMiddleware',
 ]
 
@@ -80,7 +81,7 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
-    }
+    },
 }
 
 
@@ -126,25 +127,3 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'api.User'
-
-# settings.py
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'drf_file': {
-            'level': 'INFO',
-            'class': 'logging.FileHandler',
-            # This creates a file named 'drf_requests.log' in your main project folder
-            'filename': BASE_DIR / 'drf_requests.log', 
-        },
-    },
-    'loggers': {
-        'drf_inspector': {
-            'handlers': ['drf_file'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-    },
-}
