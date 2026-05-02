@@ -2,12 +2,72 @@ GET http://localhost:8000/products/ HTTP/1.1
 
 ###
 
+GET http://localhost:8000/products/2/ HTTP/1.1
+
+###
+
+DELETE http://localhost:8000/products/2/ HTTP/1.1
+
+###
+
+PUT http://localhost:8000/products/2/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc3NzU4NDk2LCJpYXQiOjE3Nzc3NTgxOTYsImp0aSI6IjBiOGUxZDRmNTQ2NTQxMThhY2Y1Njk2ZmU3ZjJkMGEzIiwidXNlcl9pZCI6IjEifQ.VTRErNBh7yp5oEi3nOmSEsg_cPX3_ryX1kqYLxAfuBs
+
+{
+    "name": "T-shirt",
+    "price": 35.00,
+    "stock": 2,
+    "description": "Green t-shirt"
+}
+
+###
+
 POST http://localhost:8000/products/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc3NzU1NDkzLCJpYXQiOjE3Nzc3NTUxOTMsImp0aSI6IjdlMzUwYzRkZWYxNzQxOGI5MTFjMGZjMWEzYzNjODc5IiwidXNlcl9pZCI6IjEifQ.Ws-GTs480trr8EGkSKQTMvbzSvSfAk_fnSSUKs53zJo
+
+{
+    "name": "Phone",
+    "price": 3000.00,
+    "stock": 3,
+    "description": "An amazing new phone"
+}
+
+###
+
+POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Television",
-    "price": 300.00,
-    "stock": 14,
-    "description": "An amazing new TV"
+    "username": "admin",
+    "password": "test"
 }
+
+###
+
+GET http://localhost:8000/user-orders/ HTTP/1.1
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc3NzU1NjMyLCJpYXQiOjE3Nzc3NTUzMzIsImp0aSI6ImY2MGY0MjEzNWE3YTQ1YTNhZWVhZGIzNTU0N2RmZjM5IiwidXNlcl9pZCI6IjEifQ.Ry7KDA_NfHxdC8LO0SI7qyJXjlg0eefk_1OQrl_bFvY
+
+###
+
+
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "test"
+}
+
+
+###
+
+POST http://localhost:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc3Nzg0MzcyNywiaWF0IjoxNzc3NzU3MzI3LCJqdGkiOiJjNmY1ODFmMTZkOTE0YzU3OWUyZTRlODhlOGRmZTFiNiIsInVzZXJfaWQiOiIxIn0.1S4F59PraHjvIG7h8fQvta9rBRGSZo8kzng8i03K9mA"
+}
+
+###
