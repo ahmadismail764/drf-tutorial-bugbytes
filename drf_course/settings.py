@@ -33,7 +33,9 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'django_filters',
 
-    'api',
+    'accounts',
+    'products',
+    'orders'
 ]
 
 MIDDLEWARE = [
@@ -114,7 +116,7 @@ STATIC_URL = 'static/'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'api.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -126,7 +128,7 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5
+    'PAGE_SIZE': 2
 }
 
 SPECTACULAR_SETTINGS = {

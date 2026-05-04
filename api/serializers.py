@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import User, Product, Order, OrderItem
 
+# --- User serializers
+
 # class UserSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = User
@@ -12,6 +14,9 @@ from .models import User, Product, Order, OrderItem
 #             'email'
 #         )
 
+############################################################
+
+# --- Product Serializers ---
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -30,8 +35,16 @@ class ProductSerializer(serializers.ModelSerializer):
                 "Price must be greater than 0."
             )
         return value
+    
+class ProductInfoSerializer(serializers.Serializer):
+    # we want to get all products, count of products, and the max price
+    products = ProductSerializer(many=True, read_only=True)
+    count = serializers.IntegerField()
+    max_price = serializers.FloatField()    
 
+############################################################
 
+# --- OrderItem Serializers ---
 class OrderItemSerializer(serializers.ModelSerializer):
     # product = ProductSerializer()
     product_name = serializers.CharField(source='product.name')
@@ -49,8 +62,11 @@ class OrderItemSerializer(serializers.ModelSerializer):
             'quantity',
             'item_subtotal'
         )
+##############################################################
 
+# --- Order Serializers ---
 class OrderSerializer(serializers.ModelSerializer):
+    order_id = serializers.UUIDField(read_only=True)
     items = OrderItemSerializer(many=True, read_only=True)
     # user = UserSerializer(read_only=True)
     total_price = serializers.SerializerMethodField()
@@ -70,8 +86,20 @@ class OrderSerializer(serializers.ModelSerializer):
             'total_price',
         )
 
-class ProductInfoSerializer(serializers.Serializer):
-    # we want to get all products, count of products, and the max price
-    products = ProductSerializer(many=True, read_only=True)
-    count = serializers.IntegerField()
-    max_price = serializers.FloatField()
+
+class OrderCreateSerializer(serializers.ModelSerializer):
+    class OrderItemCreateSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = OrderItem
+            fields = ('product', 'quantity')
+        
+    items = OrderItemCreateSerializer(many=True)
+    class Meta:
+        model = Order
+        fields = fields = (
+            'user',
+            'status',
+            'items',
+        )
+
+##############################################################

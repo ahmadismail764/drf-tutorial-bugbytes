@@ -11,7 +11,9 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('admin/', admin.site.urls),
-    path('', include('api.urls')),
+    
+    path('products/', include('products.urls')),
+    path('orders/', include('orders.urls')),
     
     path('silk/', include('silk.urls', namespace='silk')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
