@@ -1,1 +1,0 @@
-# models moved to accounts, products, and orders apps

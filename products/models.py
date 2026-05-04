@@ -13,6 +13,3 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
-
-    class Meta:
-        db_table = 'api_product'  # preserve existing table
