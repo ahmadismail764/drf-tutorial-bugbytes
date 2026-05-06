@@ -9,7 +9,7 @@ class Order(models.Model):
         CANCELLED = 'Cancelled'
 
     order_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orders')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(
         max_length=20,

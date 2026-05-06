@@ -14,8 +14,15 @@ class OrderViewSet(viewsets.ModelViewSet):
     filterset_class = OrderFilter
     filter_backends = [DjangoFilterBackend]
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
     def get_serializer_class(self):
-        if self.action == 'create':
+        # you can also check if the method is POST
+        # should be the same result for the most part
+        # emphasis on "for the most part"
+        
+        if self.action in ['create','update']:
             return OrderCreateSerializer
         return super().get_serializer_class()
 
