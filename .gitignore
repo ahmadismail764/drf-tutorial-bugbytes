@@ -1,6 +1,22 @@
-**.pyc
+#IDEs
 .vscode/
+
+
+# Environments
 .env
 .venv/
+
+# Python
 __pycache__/
-**.http
+*.py[cod]
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database (Optional, but good practice if you have local sqlite files)
+db.sqlite3
+
+
+*.http
+
